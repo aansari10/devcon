@@ -4,15 +4,22 @@
   "description": "Social network for developers",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "devcon": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Aamir Ansari",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "concurrently": "^4.1.1",
+    "create-react-app": "^3.0.1",
     "express": "^4.17.1",
+    "g": "^2.0.1",
+    "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.4",
     "passport": "^0.4.0",
