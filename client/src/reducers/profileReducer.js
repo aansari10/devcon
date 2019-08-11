@@ -1,6 +1,6 @@
 import {
-  // GET_ERRORS,
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE
   // PROFILE_NOT_FOUND
@@ -29,6 +29,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: null
+      };
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: action.payload,
+        loading: false
       };
     default:
       return state;
