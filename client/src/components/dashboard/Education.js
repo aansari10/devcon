@@ -26,8 +26,9 @@ class Education extends Component {
           <button
             className="btn btn-danger"
             onClick={() => this.onDeleteClick(exp._id)}
+            title="Delete"
           >
-            Delete
+            <i className="fa fa-trash" />
           </button>
         </td>
       </tr>
