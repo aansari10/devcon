@@ -63,13 +63,13 @@ class Navbar extends Component {
         <div className="container">
           <div className="drfrsk mr-4">
             <span style={{ color: "white" }}>
-              Dev By: <strong>Dr Farheen </strong>
+              By: <strong>Dr Farheen </strong>
             </span>
             <img
               src={drfrsk}
               alt="drfrsk"
               className="rounded-circle"
-              style={{ height: 70, width: 70 }}
+              style={{ height: 60, width: 60 }}
               title="Dr Farheen"
             />
           </div>
