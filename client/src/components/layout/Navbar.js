@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
 import { clearCurrentProfile } from "../../actions/profileActions";
-import drfrsk from "../../img/drfrsk.jpg";
 
 class Navbar extends Component {
   onLogoutClick = event => {
@@ -61,18 +60,6 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
-          <div className="drfrsk mr-4">
-            <span style={{ color: "white" }}>
-              By: <strong>Dr Farheen </strong>
-            </span>
-            <img
-              src={drfrsk}
-              alt="drfrsk"
-              className="rounded-circle"
-              style={{ height: 60, width: 60 }}
-              title="Dr Farheen"
-            />
-          </div>
           <Link className="navbar-brand" to="/">
             DevCon
           </Link>

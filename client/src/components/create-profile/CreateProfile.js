@@ -136,12 +136,12 @@ class CreateProfile extends Component {
               <small className="d-block pb-3">* = Required Fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="* Profile Handle"
+                  placeholder="* Username"
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, company name, nickname etc(This can't be changed later)"
+                  info="A unique username for your profile URL. Your full name, company name, nickname etc(This can't be changed later)"
                 />
                 <SelectListGroup
                   placeholder="Status"
