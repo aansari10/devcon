@@ -8,7 +8,8 @@ class ProfileGithub extends Component {
     clientSecret: "01ab521fcbd8734f1f51d5a28bd1fed4e142cd86",
     count: 5,
     sort: "created: asc",
-    repos: []
+    repos: [],
+    error: true
   };
 
   componentDidMount() {
@@ -21,40 +22,53 @@ class ProfileGithub extends Component {
       .then(res => res.json())
       .then(data => {
         if (this.refs.myRef) {
+          if (data.message !== "Not Found") {
+            this.setState({
+              error: false
+            });
+          }
           this.setState({ repos: data });
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({ error: true });
+      });
   }
 
   render() {
-    const { repos } = this.state;
+    const { repos, error } = this.state;
+    let repoItems;
 
-    const repoItems = repos.map(repo => (
-      <div className="card card-body mb-2" key={repo.id}>
-        <div className="row">
-          <div className="col-md-6">
-            <h4>
-              <Link to={repo.html_url} className="text-info" target="_blank">
-                {repo.name}
-              </Link>
-            </h4>
-            <p>{repo.description}</p>
-          </div>
-          <div className="col-md-6">
-            <span className="badge badge-info mr-1">
-              Stars: {repo.stargazers_count}
-            </span>
-            <span className="badge badge-secondary mr-1">
-              Watchers: {repo.watchers_count}
-            </span>
-            <span className="badge badge-success">
-              Forks: {repo.forks_count}
-            </span>
+    if (error) {
+      repoItems = <span>No reposetory found.</span>;
+    } else {
+      repoItems = repos.map(repo => (
+        <div className="card card-body mb-2" key={repo.id}>
+          <div className="row">
+            <div className="col-md-6">
+              <h4>
+                <Link to={repo.html_url} className="text-info" target="_blank">
+                  {repo.name}
+                </Link>
+              </h4>
+              <p>{repo.description}</p>
+            </div>
+            <div className="col-md-6">
+              <span className="badge badge-info mr-1">
+                Stars: {repo.stargazers_count}
+              </span>
+              <span className="badge badge-secondary mr-1">
+                Watchers: {repo.watchers_count}
+              </span>
+              <span className="badge badge-success">
+                Forks: {repo.forks_count}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    ));
+      ));
+    }
+
     return (
       <div ref="myRef">
         <hr />
