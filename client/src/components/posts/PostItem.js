@@ -18,11 +18,17 @@ class PostItem extends Component {
     this.props.removeLike(id);
   };
 
-  findUserLike = likes => {
+  findUserLike = (likes, postId = 0, clicked = false) => {
     const { auth } = this.props;
     if (likes.filter(like => like.user === auth.user.id).length > 0) {
+      if (clicked) {
+        this.onUnlikeClick(postId);
+      }
       return true;
     } else {
+      if (clicked) {
+        this.onLikeClick(postId);
+      }
       return false;
     }
   };
@@ -50,7 +56,7 @@ class PostItem extends Component {
                 <button
                   type="button"
                   className="btn btn-light mr-1"
-                  onClick={() => this.onLikeClick(post._id)}
+                  onClick={() => this.findUserLike(post.likes, post._id, true)}
                 >
                   <i
                     className={classnames("fas fa-thumbs-up", {
@@ -58,13 +64,6 @@ class PostItem extends Component {
                     })}
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-light mr-1"
-                  onClick={() => this.onUnlikeClick(post._id)}
-                >
-                  <i className="text-secondary fas fa-thumbs-down" />
                 </button>
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
                   Comments
